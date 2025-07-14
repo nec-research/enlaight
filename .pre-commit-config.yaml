@@ -1,0 +1,108 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+# exclude html files
+exclude: '.*html$|.*experiments/.*'
+
+repos:
+  # basic pre-commit checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: ["--unsafe"]
+      - id: check-added-large-files
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: requirements-txt-fixer
+      - id: name-tests-test
+
+  # further simple fast checks
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-use-type-annotations
+      - id: python-no-log-warn
+      - id: python-check-blanket-noqa
+      - id: python-check-blanket-type-ignore
+
+  # remove unused imports and variables in standard library
+  - repo: https://github.com/myint/autoflake
+    rev: v2.3.0
+    hooks:
+      - id: autoflake
+        language: python
+
+  # sort imports according to PEP8
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: ["--profile=black"]
+
+  # static type hint checks
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        args: ["--disallow-untyped-defs", "--ignore-missing-imports"]
+
+  # automatic upgrade syntax to newer versions
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.15.1
+    hooks:
+      - id: pyupgrade
+
+  # black code formatting
+  - repo: https://github.com/psf/black
+    rev: 24.2.0
+    hooks:
+      - id: black
+        language_version: python3.10
+
+  #check docstrings and the correct format
+  - repo: https://github.com/pycqa/pydocstyle
+    rev: 6.3.0
+    hooks:
+      - id: pydocstyle
+        args: [ "--convention=pep257" ]
+
+  # PEP8 style enforcement
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        args: [ "--max-line-length=88", "--extend-ignore=E203" ]
+
+  # clean notebook
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.7.1
+    hooks:
+      - id: nbstripout
+
+  # notebook hooks
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.8.3
+    hooks:
+      - id: nbqa-check-ast
+      - id: nbqa-isort
+        args: ["--profile=black"]
+      - id: nbqa-mypy
+        args: ["--disallow-untyped-defs", "--ignore-missing-imports"]
+      - id: nbqa-pyupgrade
+      - id: nbqa-black
+        language_version: python3.10
+      - id: nbqa-flake8
+        args: [ "--max-line-length=88", "--extend-ignore=E203"]
+
+  # check commit message rules (https://www.conventionalcommits.org)
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.1.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]

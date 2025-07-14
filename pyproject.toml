@@ -1,0 +1,82 @@
+[build-system]
+requires = [
+    "setuptools >= 42",  # At least v42 of setuptools required for versiongit!
+    "versioningit"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "enlaight"
+authors = [
+  {email = "sascha.saralajew@neclab.eu"},
+  {name = "Sascha Saralajew"}
+]
+maintainers = [
+  {name = "Sascha Saralajew", email = "sascha.saralajew@neclab.eu"}
+]
+description = "Prototype-based Classifiers implementation in PyTorch"
+readme = "README.rst"
+requires-python = ">=3.9"
+# keywords = ["tbd", "tbd"]
+license = {file = "LICENSE"}
+# classifiers = [ "tbd", "tbd"]
+dependencies = [
+    "lightning>=2.2.0",
+    "torch>=1.13",
+    "torchvision>=0.14",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+    "nbmake",
+    "pytest",
+    "pytest-cov",
+    "pre-commit",
+    "scipy",
+    "tox",
+    "scikit-learn",
+    "ray[tune]",
+    "autoattack @ git+https://github.com/fra31/auto-attack.git@a39220048b3c9f2cca9a4d3a54604793c68eca7e",
+    "pandas",
+    "matplotlib",
+]
+sphinx = [
+    "ipykernel",
+    "nbsphinx",
+    "sphinx",
+    "sphinx_autodoc_typehints",
+    "sphinx-copybutton",
+    "sphinx-rtd-theme",
+]
+notebooks = [
+    "ipywidgets",
+    "jupyterlab",
+    "matplotlib",
+    "scikit-learn",
+    "tensorboard",
+]
+docs = [
+    "enlaight[notebooks,sphinx]"
+]
+all = [
+    "enlaight[dev,notebooks,sphinx]",
+]
+
+# register your scripts here if needed
+# [project.scripts]
+# my-script = "enlaight:main"
+
+# avoid the known import issues
+# https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html#which-import-mode
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+
+# required by versiongit
+[tool.versioningit]
+
+# default tag to use by versiongit if no tag is available
+[tool.versioningit.vcs]
+default-tag = "v0.0.0"

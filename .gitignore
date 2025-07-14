@@ -1,0 +1,15 @@
+.idea
+.coverage
+.tox
+.pytest_cache
+.mypy_cache
+enlaight.egg-info
+build
+coverage.xml
+htmlcov
+lightning_logs
+MNIST
+tmp
+*.ipynb_checkpoints
+__pycache__/
+_autosummary
