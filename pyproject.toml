@@ -41,26 +41,14 @@ dev = [
     "pandas",
     "matplotlib",
 ]
-sphinx = [
-    "ipykernel",
-    "nbsphinx",
+docs = [
     "sphinx",
     "sphinx_autodoc_typehints",
     "sphinx-copybutton",
     "sphinx-rtd-theme",
 ]
-notebooks = [
-    "ipywidgets",
-    "jupyterlab",
-    "matplotlib",
-    "scikit-learn",
-    "tensorboard",
-]
-docs = [
-    "enlaight[notebooks,sphinx]"
-]
 all = [
-    "enlaight[dev,notebooks,sphinx]",
+    "enlaight[dev,sphinx]",
 ]
 
 # register your scripts here if needed
