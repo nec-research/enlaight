@@ -74,12 +74,6 @@ directory:
 
    pip install .
 
-To install the package with the support of *Jupyter* notebooks, execute the following:
-
-.. code-block:: shell
-
-   pip install .[notebooks]
-
 Note that the package requires *Python 3.9* or higher, which is checked during the
 installation. Moreover, if you install the package inside a *conda* environment, be
 aware of potential installation or package side-effects due to conflicts between *conda*
@@ -116,7 +110,7 @@ For contributions, install the package in dev-mode:
 
    pip install .[dev]
 
-or with all dependencies (including ``dev``, ``notebooks``, and ``docs``):
+or with all dependencies (including ``dev`` and ``docs``):
 
 .. code-block:: shell
 
@@ -140,7 +134,7 @@ even though *pandoc* is installed via *pip*, install it via
 
     apt-get install pandoc
 
-If you have errors with *ipykernel* during doc compilation or notebook execution
+If you have errors with *ipykernel* during doc compilation
 while using *conda*, uninstall the *pip* version and install it via *conda*.
 
 Code Submission
